@@ -46,18 +46,6 @@ async function* shapes(fileName) {
   }
 }
 
-// @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator#user-defined_async_iterables
-// const shapesNoArgs = {
-//   async *[Symbol.asyncIterator]() {
-//     const reader = await shapefile.open(shapeFile)
-//     while (true) {
-//       const { done, value } = await reader.read()
-//       if (done) return
-//       yield value
-//     }
-//   },
-// }
-
 const getCoordinates = (item) =>
   item.geometry.type === 'LineString'
     ? [item.geometry.coordinates]
@@ -69,9 +57,6 @@ let itemLines
 let linesOn10 = []
 let linesOn20 = []
 let linesOn40 = []
-// let wip = {}
-// let key
-// let val
 for await (const item of shapes(shapeFile)) {
   const elev = item.properties.ContourEle
   // Only sea level or above
@@ -88,26 +73,7 @@ for await (const item of shapes(shapeFile)) {
   keep10 && linesOn10.push(...itemLines)
   keep20 && linesOn20.push(...itemLines)
   keep40 && linesOn40.push(...itemLines)
-
-  // key = `e_${item.properties.ContourEle}`
-  // val = `${item.properties.ContourEle}_${item.properties.ContourInt}_${item.properties.NEDResolut}`
-  // val = `${item.properties.ContourEle}_${item.properties.ContourInt}_${item.properties.NEDResolut}`
-  // if (wip.hasOwnProperty(key)) {
-  //   if (!wip[key].includes(val)) wip[key].push(val)
-  // } else {
-  //   wip[key] = [val]
-  // }
 }
-// console.table(
-//   Object.entries(wip)
-//     .sort((a, b) => {
-//       return a[0].replace('e_', '') - b[0].replace('e_', '')
-//     })
-//     .map(([k, v]) => {
-//       v.sort()
-//       return v
-//     }),
-// )
 
 // @see https://github.com/d3/d3-interpolate/blob/main/src/number.js
 const interpolateNumber = (a, b) => (t) => a * (1 - t) + b * t
