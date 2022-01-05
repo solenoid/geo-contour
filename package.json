@@ -1,0 +1,27 @@
+{
+  "name": "geo-contour",
+  "type": "module",
+  "description": "Turns geo contour lines from USGS data into svg files.",
+  "author": {
+    "name": "Erik Solen"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "config": {
+    "ma_eastern": "ELEV_Boston_W_MA_1X1_Shape",
+    "ma_western": "ELEV_Albany_E_MA_1X1_Shape",
+    "ma_harbour": "ELEV_Boston_E_MA_1X1_Shape",
+    "ma_capecod": "ELEV_Providence_C_MA_1X1_Shape",
+    "nh_southern": "ELEV_Portland_W_NH_1X1_Shape"
+  },
+  "scripts": {
+    "remove:zips": "rm data/*.zip",
+    "fetch:zip": "./getData.sh $npm_config_shape",
+    "start": "node index.js $npm_config_shape"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "shapefile": "^0.6.6"
+  }
+}
