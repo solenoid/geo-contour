@@ -46,7 +46,7 @@ If you want more shape support than the handful added initially just add a memor
 
 https://prd-tnm.s3.amazonaws.com/index.html?prefix=StagedProducts/Contours/Shape/
 
-The naming scheme in the package.json file is all lower case "<us state>_<memorable name>" instead of the USGS naming scheme which still doesn't make enough sense to be memorable as to what's shown where.
+The naming scheme in the package.json file is all lower case `"<us state>_<memorable name>"` instead of the USGS naming scheme which still doesn't make enough sense to be memorable as to what's shown where.
 
 The jpg files on the staged data site are useful to see roughly what you'll get and also to aid in debugging once the data is downloaded.
 
